@@ -37,13 +37,6 @@ El Servicio Cafetería es un microservicio diseñado para ayudar a los dueños d
 
 
 
-"3) 
-
-En la sección de alternativas para hacer uso del microservicio, podrías agregar un ejemplo de cómo hacer una solicitud con Postman o Insomnia. Por ejemplo:
-
-"3) Utiliza Postman o Insomnia para hacer solicitudes HTTP a la API del microservicio. Por ejemplo, para obtener una lista de todos los productos, haz una solicitud GET a la siguiente URL: 'http://localhost:8080/api/productos'."
-
-
 
 
 
@@ -72,13 +65,16 @@ En la sección de alternativas para hacer uso del microservicio, podrías agrega
 
 1) Puedes interactuar con Swagger , dejo la ruta de mi Localhost, solo cambia el puerto por el tuyo : http://localhost:8080/swagger-ui/index.html#
 2) Interactua con el fron realizado con Thymeleaf
-3) Utliza a Postman o Insonia u otro.
+
+3) Utiliza Postman o Insomnia para hacer solicitudes HTTP a la API del microservicio. Por ejemplo, para obtener una lista de todos los productos, haz una solicitud GET a la siguiente URL: 'http://localhost:8080/api/productos'."
+
+
 
 
 
 ### Link para uso:
 
-- github :  
+- github :  https://github.com/Jaime-U-Lopez/MicroServicioCafeteria
 - copia de la base de datos
 
 
