@@ -1,5 +1,7 @@
 package com.example.cafeteria.DTO;
 
+import com.example.cafeteria.Exception.ExceptionCafeteria;
+
 import javax.persistence.Column;
 
 public class ProductoDto {
@@ -22,6 +24,18 @@ public class ProductoDto {
         this.peso = peso;
         this.precio = precio;
     }
+
+
+    public static void validacionAtributos(
+    String nombreProducto, String categoria, String referencia, Integer peso, Integer precio)  {
+
+        if(nombreProducto.equals(null) ||categoria.equals(null) || referencia.equals(null)|| peso<= 0 || precio <= 0 ){
+            throw new ExceptionCafeteria("Los campos ingresados deben de ser : nommbre producto , categeria , referencia  no pueden estar vacios y peso y precio no pueden ser cero o menor a cero  ");
+        }
+
+    }
+
+
 
     public Integer getId() {
         return id;

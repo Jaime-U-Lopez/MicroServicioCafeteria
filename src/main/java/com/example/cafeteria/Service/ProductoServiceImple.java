@@ -3,6 +3,7 @@ package com.example.cafeteria.Service;
 import com.example.cafeteria.DTO.ProductoDto;
 import com.example.cafeteria.Entity.Inventario;
 import com.example.cafeteria.Entity.Producto;
+import com.example.cafeteria.Exception.ExceptionCafeteria;
 import com.example.cafeteria.Repository.InventarioRepository;
 import com.example.cafeteria.Repository.ProductoRepository;
 import com.example.cafeteria.Repository.ProductoRepositoryImple;
@@ -29,7 +30,16 @@ public class ProductoServiceImple  implements ProductoService {
     }
 
     @Override
-    public Producto createProducto(ProductoDto productoDto) {
+    public Producto createProducto(ProductoDto productoDto) throws RuntimeException {
+
+        String nombreProducto=productoDto.getNombreProducto();
+        String categoria= productoDto.getCategoria();
+        String referencia=productoDto.getReferencia();
+        Integer peso=productoDto.getPeso();
+        Integer precio=productoDto.getPrecio();
+
+        ProductoDto.validacionAtributos(nombreProducto,categoria,referencia,peso,precio);
+
         LocalDate fechaActual = LocalDate.now();
         Date fechaIngreso= Date.valueOf(fechaActual);
         Integer stock= 1;
@@ -43,24 +53,43 @@ public class ProductoServiceImple  implements ProductoService {
             return  productoOptional.get();
         }else {
             return this.productoRepositoryImple.create(productoDto ,fechaIngreso , stock);
-
         }
-
-
-
-
-
 
     }
 
     @Override
-    public Producto UpdateProducto(Producto producto) {
+    public Producto UpdateProducto(Producto producto) throws RuntimeException {
+
+        String nombreProducto=producto.getNombreProducto();
+        String categoria= producto.getCategoria();
+        String referencia=producto.getReferencia();
+        Integer peso=producto.getPrecio();
+        Integer precio=producto.getPrecio();
+
+        ProductoDto.validacionAtributos(nombreProducto,categoria,referencia,peso,precio);
+
+
         return this.productoRepositoryImple.Update(producto);
     }
 
     @Override
-    public void deleteProducto(Integer id) {
-        this.productoRepositoryImple.delete(id);
+    public Boolean deleteProducto(Integer id) throws RuntimeException {
+
+
+
+    try {
+        this.getProducto(id);
+        Optional<Boolean> producto = Optional.ofNullable(this.productoRepositoryImple.delete(id));
+    if (!producto.isPresent()) {
+        throw new ExceptionCafeteria("El producto con id : "+ id  + " no se pudo eliminar ");
+    }
+        return true;
+    }catch (ExceptionCafeteria e){
+
+    throw new ExceptionCafeteria("El producto con id : "+ id  + " no se pudo eliminar ");
+
+}
+
     }
 
 

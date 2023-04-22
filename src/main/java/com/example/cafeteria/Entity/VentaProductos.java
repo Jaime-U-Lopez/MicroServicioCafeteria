@@ -9,28 +9,32 @@ public class VentaProductos implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private static Integer contador=0;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column( nullable = false)
-    private Integer id;
-
-
+    private Integer idVenta;
     @ManyToOne
     @JoinColumn(name = "producto")
     private Producto producto;
+
     private Integer cantidadVendida;
 
-    public VentaProductos(Producto producto, Integer cantidadVendida) {
+
+    public VentaProductos() {
+    }
+
+    public VentaProductos( Producto producto, Integer cantidadVendida) {
         this.producto = producto;
         this.cantidadVendida = cantidadVendida;
+        this.idVenta=VentaProductos.contador++;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdVenta() {
+        return idVenta;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
     }
 
     public Producto getProducto() {

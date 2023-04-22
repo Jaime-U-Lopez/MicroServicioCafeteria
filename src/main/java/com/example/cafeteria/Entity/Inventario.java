@@ -13,6 +13,7 @@ public class Inventario  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column( nullable = false)
+
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "producto")

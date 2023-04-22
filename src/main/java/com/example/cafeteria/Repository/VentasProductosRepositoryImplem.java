@@ -1,6 +1,7 @@
 package com.example.cafeteria.Repository;
 
 
+import com.example.cafeteria.Entity.Producto;
 import com.example.cafeteria.Entity.VentaProductos;
 import com.example.cafeteria.Exception.ExceptionCafeteria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,6 @@ public class VentasProductosRepositoryImplem implements VentasProductosRepositor
     @Override
     public VentaProductos create(VentaProductos ventaProductos) throws RuntimeException {
 
-        Optional<VentaProductos> ventaProductos1=  this.ventasProductosRepository.findById(ventaProductos.getId());
-        if(!ventaProductos1.isEmpty()){
-            throw new ExceptionCafeteria("La venta con el id "+ ventaProductos.getId() + "ya existe en la base de datos");
-        }
         return this.ventasProductosRepository.save(ventaProductos);
     }
 
@@ -51,11 +48,15 @@ public class VentasProductosRepositoryImplem implements VentasProductosRepositor
     public VentaProductos getVentaProduct(Integer id) throws RuntimeException {
 
         Optional<VentaProductos> ventaProductos= this.ventasProductosRepository.findById(id);
-        if(ventaProductos.isEmpty()){
+        if(!ventaProductos.isPresent()){
 
-            throw new ExceptionCafeteria(" El producto vendido con id " + id + "  no existe en la base de datos " );
+            throw new ExceptionCafeteria(" La Venta con  id " + id + "  no existe en la base de datos " );
         }
-
         return ventaProductos.get() ;
+    }
+
+    @Override
+    public Producto queryzProductoConMasStock() {
+        return this.ventasProductosRepository.productoConMasStock();
     }
 }

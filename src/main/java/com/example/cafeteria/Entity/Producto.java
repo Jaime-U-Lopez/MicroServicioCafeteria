@@ -31,6 +31,11 @@ public class Producto  implements Serializable {
 
     @OneToMany
     List<Inventario> inventario;
+    @OneToMany
+    List<VentaProductos> ventaProductos;
+
+
+
     public Producto() {
     }
 
@@ -111,4 +116,7 @@ public class Producto  implements Serializable {
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
+
+
 }

@@ -10,7 +10,7 @@ public interface ProductoService  {
 
     Producto createProducto(ProductoDto productoDto);
     Producto UpdateProducto( Producto producto );
-    void  deleteProducto( Integer  id  );
+    Boolean  deleteProducto( Integer  id  );
     List<Producto> getProductoAll();
     Producto getProducto( Integer id);
 }

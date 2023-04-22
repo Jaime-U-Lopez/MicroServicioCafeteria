@@ -3,12 +3,14 @@ package com.example.cafeteria.Controller;
 
 import com.example.cafeteria.DTO.VentaDto;
 import com.example.cafeteria.Entity.Inventario;
+import com.example.cafeteria.Entity.Producto;
 import com.example.cafeteria.Entity.VentaProductos;
 import com.example.cafeteria.Service.CafeteriaService;
 import com.example.cafeteria.Service.CafeteriaServiceImple;
 import com.example.cafeteria.Service.InventarioServiceImple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -25,22 +27,55 @@ public class CafeteriaController {
         this.cafeteriaServiceImple = cafeteriaServiceImple ;
     }
 
+    @GetMapping("/")
+    public String index(Model model) {
+        List<VentaProductos> ventas = this.cafeteriaServiceImple.consultarVentasAll();
+        model.addAttribute("ventas", ventas);
+        return "index";
+    }
+
+    @GetMapping("/ventas/nuevo")
+    public String formularioNuevoProducto(Model model) {
+
+        model.addAttribute("producto", new Producto());
+        return "formulario";
+    }
+
+    @PostMapping("/ventas/nuevo")
+    public String nuevoProducto(@ModelAttribute("producto") VentaDto ventaDto) {
+        this.cafeteriaServiceImple.registrarVenta(ventaDto);
+        return "redirect:/";
+    }
+
+
+
+
     @PostMapping("ventas")
-    public VentaProductos createVenta(VentaDto ventaDto ){
+    public ResponseEntity<?> createVenta(VentaDto ventaDto ){
 
         return this.cafeteriaServiceImple.registrarVenta(ventaDto);
     }
 
 
     @GetMapping("ventas")
-    public List<VentaProductos> listVentas(){
-        return this.cafeteriaServiceImple.consultarVentasAll();
+    public ResponseEntity<List<VentaProductos>> listVentas(){
+        List<VentaProductos> ventas = this.cafeteriaServiceImple.consultarVentasAll();
+
+        return ResponseEntity.ok().body(ventas);
+
+
     }
 
     @GetMapping("ventas/{id}")
     public  VentaProductos  ventaGet(@PathVariable Integer id){
         return this.cafeteriaServiceImple.consultaByID(id);
     }
+
+    @GetMapping("ventas/{stockUp}")
+    public Producto queryxProductStockUP(@PathVariable String stockUp){
+        return this.cafeteriaServiceImple.consultaProductoConMasStock();
+    }
+
 
 
     @PutMapping("ventas")

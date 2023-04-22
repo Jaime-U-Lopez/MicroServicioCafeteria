@@ -57,10 +57,10 @@ public class ProductoRepositoryImple  implements ProductoRepositoryDAO {
     }
 
     @Override
-    public void delete(Integer id) throws ExceptionCafeteria {
+    public Boolean delete(Integer id)  {
 
-        this.getProduct(id);
-        this.productoRepository.deleteById(id);
+            this.productoRepository.deleteById(id);
+              return true;
     }
 
     @Override

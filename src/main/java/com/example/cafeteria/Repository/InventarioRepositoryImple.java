@@ -45,7 +45,7 @@ public class InventarioRepositoryImple implements InventarioRepositoryDao{
     public Inventario getInventario(Integer id) {
 
         Optional<Inventario> inventario= this.inventarioRepository.findById(id);
-        if (inventario.isEmpty()){
+        if (!inventario.isPresent()){
             throw new ExceptionCafeteria("El Inventario  con id " + id + " no se encuentra en la base de datos");
         }
         return inventario.get() ;

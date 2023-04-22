@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cafeteria</title>
+</head>
+<body>
+
+
+<header>
+    <nav>
+        <a href="#">Producto</a>
+        <a href="#">Inventario</a>
+    </nav>
+</header>
+
+
+
+<form action="#" th:action="@{/ventas}" th:object="${ventaProductos}" method="post">
+    <label for="producto">Producto:</label>
+    <select id="producto" name="producto.id">
+        <option th:each="producto : ${productos}"
+                th:value="${producto.id}"
+                th:text="${producto.nombreProducto}"></option>
+    </select>
+    <br>
+    <label for="cantidadVendida">Cantidad Vendida:</label>
+    <input type="number" id="cantidadVendida" name="cantidadVendida" min="1" required>
+    <br>
+    <input type="submit" value="Agregar Venta">
+</form>
+
+
+
+
+<h1>Listado de Ventas</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID Venta</th>
+        <th>Producto</th>
+        <th>Cantidad Vendida</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Itera sobre la lista de ventas y muestra los datos en la tabla -->
+    <tr th:each="venta : ${ventas}">
+        <td th:text="${venta.idVenta}"></td>
+        <td th:text="${venta.producto.nombre}"></td>
+        <td th:text="${venta.cantidadVendida}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+</body>
+</html>

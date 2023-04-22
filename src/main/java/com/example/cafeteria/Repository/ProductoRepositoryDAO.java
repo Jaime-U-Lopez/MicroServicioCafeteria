@@ -9,9 +9,9 @@ import java.util.List;
 public interface ProductoRepositoryDAO  {
 
     Producto create(ProductoDto productoDto, Date fechaIngreso, Integer stock );
-    Producto Update( Producto producto );
-    void  delete( Integer  id  );
+    Producto Update( Producto producto);
+    Boolean  delete(Integer id);
     List<Producto> getProductoAll();
-    Producto getProduct( Integer id);
+    Producto getProduct(Integer id);
 
 }

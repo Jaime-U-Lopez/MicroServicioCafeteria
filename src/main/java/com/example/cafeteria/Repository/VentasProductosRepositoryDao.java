@@ -14,4 +14,5 @@ public interface VentasProductosRepositoryDao  {
     List<VentaProductos> getVentaProductoAll();
     VentaProductos getVentaProduct( Integer id);
 
+    Producto queryzProductoConMasStock();
 }
