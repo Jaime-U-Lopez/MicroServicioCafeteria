@@ -70,8 +70,6 @@ El Servicio Cafetería es un microservicio diseñado para ayudar a los dueños d
 
 
 
-
-
 ### Link para uso:
 
 - github :  https://github.com/Jaime-U-Lopez/MicroServicioCafeteria
@@ -82,9 +80,25 @@ El Servicio Cafetería es un microservicio diseñado para ayudar a los dueños d
 
 1 ) Realizar una consulta que permita conocer cuál es el producto que más stock tiene: 
 
-
+      -  Consulta SQL :  select * from producto p Order by p.stock Desc limit 1
+      
+        respuesta : 
+        
+       <img style=whit=20px>
+ ![image](https://user-images.githubusercontent.com/50783391/233808090-428e7250-ad69-49c0-a942-ea9f78eae73f.png)
+      
+       </img>
+ 
 
 2 )  Realizar una consulta que permita conocer cuál es el producto más vendido.
+
+ 
+      -  Consulta SQL :  select producto from  venta_productos group by producto  order by sum(cantidad_vendida) desc limit 1
+
+         respuesta: 
+         
+  ![image](https://user-images.githubusercontent.com/50783391/233808076-1148532b-c668-44eb-925a-faea87e8f90d.png)
+
 
 
 
@@ -95,7 +109,6 @@ El Servicio Cafetería es un microservicio diseñado para ayudar a los dueños d
 
 
 
-## 🏛 Diagrama de clases : 
 
 
 
