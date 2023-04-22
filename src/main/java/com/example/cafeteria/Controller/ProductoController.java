@@ -42,7 +42,7 @@ public class ProductoController {
         return "redirect:/productos";
     }
 
-
+//
 
     @PostMapping("productos")
     public Producto  createProduct(@RequestBody ProductoDto  productoDto){
