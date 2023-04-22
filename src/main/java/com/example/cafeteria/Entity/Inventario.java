@@ -1,32 +1,41 @@
 package com.example.cafeteria.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Inventario implements Serializable {
+public class Inventario  implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column( nullable = false)
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "producto")
     private Producto producto;
-    private Integer StockProducto;
-    private Date fechaUltimoRegistro;
 
-    public Inventario(Producto producto, Integer stockProducto, Date fechaUltimoRegistro) {
-        this.producto = producto;
-        StockProducto = stockProducto;
-        this.fechaUltimoRegistro = fechaUltimoRegistro;
-    }
+    private String tipo;
+
 
     public Inventario() {
+    }
+
+    public Inventario(Producto producto, String tipo) {
+        this.producto = producto;
+        this.tipo=tipo;
+    }
+
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Integer getId() {
@@ -37,27 +46,11 @@ public class Inventario implements Serializable {
         this.id = id;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
-    public Integer getStockProducto() {
-        return StockProducto;
-    }
-
-    public void setStockProducto(Integer stockProducto) {
-        StockProducto = stockProducto;
-    }
-
-    public Date getFechaUltimoRegistro() {
-        return fechaUltimoRegistro;
-    }
-
-    public void setFechaUltimoRegistro(Date fechaUltimoRegistro) {
-        this.fechaUltimoRegistro = fechaUltimoRegistro;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

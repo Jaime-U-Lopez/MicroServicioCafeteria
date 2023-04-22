@@ -12,7 +12,7 @@ public class Producto  implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(nullable = false)
     private Integer id;
     @Column(nullable = false)
     private String  nombreProducto;
@@ -25,23 +25,33 @@ public class Producto  implements Serializable {
     @Column(nullable = false)
     private String  categoria;
     @Column(nullable = false)
-    private Integer  Stock;
+    private Integer  stock;
     @Column(nullable = false)
     private Date fechaCreacion;
-    @OneToMany
-    private List<Producto> inventario;
 
+    @OneToMany
+    List<Inventario> inventario;
     public Producto() {
     }
 
-    public Producto(String nombreProducto, String referencia, Integer precio, Integer peso, String categoria, Integer stock, Date fechaCreacion) {
+    public Producto(Integer id, String nombreProducto, String referencia, Integer precio, Integer peso, String categoria, Integer stock, Date fechaCreacion) {
+        this.id = id;
         this.nombreProducto = nombreProducto;
         this.referencia = referencia;
         this.precio = precio;
         this.peso = peso;
         this.categoria = categoria;
-        Stock = stock;
+        this.stock = stock;
         this.fechaCreacion = fechaCreacion;
+
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Integer getId() {
@@ -92,13 +102,7 @@ public class Producto  implements Serializable {
         this.categoria = categoria;
     }
 
-    public Integer getStock() {
-        return Stock;
-    }
 
-    public void setStock(Integer stock) {
-        Stock = stock;
-    }
 
     public Date getFechaCreacion() {
         return fechaCreacion;

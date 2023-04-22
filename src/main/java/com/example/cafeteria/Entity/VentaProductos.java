@@ -10,11 +10,13 @@ public class VentaProductos implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column( nullable = false)
     private Integer id;
 
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "producto")
     private Producto producto;
     private Integer cantidadVendida;
 

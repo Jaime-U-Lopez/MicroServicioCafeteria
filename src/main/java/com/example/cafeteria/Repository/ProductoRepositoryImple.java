@@ -1,10 +1,14 @@
 package com.example.cafeteria.Repository;
 
+import com.example.cafeteria.DTO.ProductoDto;
+import com.example.cafeteria.Entity.Inventario;
 import com.example.cafeteria.Entity.Producto;
 import com.example.cafeteria.Exception.ExceptionCafeteria;
+import com.example.cafeteria.Service.InventarioServiceImple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,10 +16,13 @@ import java.util.Optional;
 public class ProductoRepositoryImple  implements ProductoRepositoryDAO {
 
     private  ProductoRepository productoRepository;
+    private InventarioServiceImple inventarioServiceImple;
 
     @Autowired
-    public ProductoRepositoryImple(ProductoRepository productoRepository) {
+    public ProductoRepositoryImple(ProductoRepository productoRepository, InventarioServiceImple inventarioServiceImple) {
         this.productoRepository = productoRepository;
+        this.inventarioServiceImple= inventarioServiceImple;
+
     }
 
     public ProductoRepositoryImple() {
@@ -23,9 +30,24 @@ public class ProductoRepositoryImple  implements ProductoRepositoryDAO {
     }
 
     @Override
-    public Producto create(Producto producto) {
+    public Producto create(ProductoDto productoDto, Date fechaIngreso, Integer stock) throws RuntimeException  {
 
-        return this.productoRepository.save(producto);
+        String categoria= productoDto.getCategoria();
+        String nombreProducto= productoDto.getNombreProducto();
+        Integer peso= productoDto.getPeso();
+        String referencia= productoDto.getReferencia();
+        Integer precio= productoDto.getPrecio();
+        Integer id=productoDto.getId();
+
+        Producto producto = new Producto(id,nombreProducto,referencia,precio,peso,categoria,stock,fechaIngreso);
+        this.productoRepository.save(producto);
+        Optional<Producto> productoOptional= this.productoRepository.findById(id);
+        String tipo="ingreso";
+        Inventario inventario= new Inventario(productoOptional.get(), tipo);
+        this.inventarioServiceImple.registrarInventario(inventario)    ;
+
+    return productoOptional.get();
+
     }
 
     @Override
@@ -35,7 +57,7 @@ public class ProductoRepositoryImple  implements ProductoRepositoryDAO {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Integer id) throws ExceptionCafeteria {
 
         this.getProduct(id);
         this.productoRepository.deleteById(id);
@@ -50,7 +72,7 @@ public class ProductoRepositoryImple  implements ProductoRepositoryDAO {
     public Producto getProduct(Integer id) throws RuntimeException {
 
         Optional<Producto> producto= this.productoRepository.findById(id);
-        if (producto.isEmpty()){
+        if (!producto.isPresent()){
             throw new ExceptionCafeteria("El Producto con id " + id + " no se encuentra en la base de datos");
         }
         return producto.get() ;
