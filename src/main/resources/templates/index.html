@@ -1,58 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Cafeteria</title>
-</head>
-<body>
+    <head>
+        <title>Cafeteria</title>
+        <meta charset="UTF-8">
+        <title>Cafeteria  </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+
+    <header>
+        <nav>
+            <a th:href="@{/producto}">Producto</a>
+            <a th:href="@{/inventario}">inventario</a>
+        </nav>
+    </header>
+
+    <main>
 
 
-<header>
-    <nav>
-        <a href="#">Producto</a>
-        <a href="#">Inventario</a>
-    </nav>
-</header>
+        <h1> Formulario pára crear una venta </h1>
+
+    <form action="#" th:action="@{/guardarVenta}" th:object="${ventaDto}" method="post">
+        <label for="producto">Producto:</label>
+        <select id="producto" name="idProducto">
+            <option th:each="producto : ${productos}"
+                    th:value="${producto.id}"
+                    th:text="${producto.nombreProducto}"></option>
+        </select>
+        <br>
+        <label for="cantidadVendida">Cantidad Vendida:</label>
+        <input type="number" id="cantidadVendida" name="cantidad" min="1" required>
+        <br>
+        <input type="submit" name="guardarVenta" value="Agregar Venta">
+    </form>
 
 
+        <h1>  Listado de ventas realizadas </h1>
 
-<form action="#" th:action="@{/ventas}" th:object="${ventaProductos}" method="post">
-    <label for="producto">Producto:</label>
-    <select id="producto" name="producto.id">
-        <option th:each="producto : ${productos}"
-                th:value="${producto.id}"
-                th:text="${producto.nombreProducto}"></option>
-    </select>
-    <br>
-    <label for="cantidadVendida">Cantidad Vendida:</label>
-    <input type="number" id="cantidadVendida" name="cantidadVendida" min="1" required>
-    <br>
-    <input type="submit" value="Agregar Venta">
-</form>
+        <div th:if="${ventas != null and !ventas.empty}">
+            <table border="1">
+                <tr>
+                    <th>Id venta </th>
+                    <th>id producto</th>
+                    <th>Nombre Producto</th>
+                    <th>Referencia</th>
+                    <th>Precio</th>
+                    <th>Peso</th>
+                    <th>Categoria</th>
+                    <th>Cantidad Vendida </th>
 
-
-
-
-<h1>Listado de Ventas</h1>
-<table>
-    <thead>
-    <tr>
-        <th>ID Venta</th>
-        <th>Producto</th>
-        <th>Cantidad Vendida</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Itera sobre la lista de ventas y muestra los datos en la tabla -->
-    <tr th:each="venta : ${ventas}">
-        <td th:text="${venta.idVenta}"></td>
-        <td th:text="${venta.producto.nombre}"></td>
-        <td th:text="${venta.cantidadVendida}"></td>
-    </tr>
-    </tbody>
-</table>
+                </tr>
+                <tr th:each="venta : ${ventas}">
+                    <td th:text="${venta.idVenta}">Mostrar Nombre</td>
+                    <td th:text="${venta.producto.id}">Mostrar Nombre</td>
+                    <td th:text="${venta.producto.NombreProducto}">Mostrar Nombre</td>
+                    <td th:text="${venta.producto.Referencia}">Mostrar Nombre</td>
+                    <td th:text="${venta.producto.Precio}">Mostrar Nombre</td>
+                    <td th:text="${venta.producto.Peso}">Mostrar Nombre</td>
+                    <td th:text="${venta.producto.Categoria}">Mostrar Nombre</td>
+                    <td th:text="${venta.cantidadVendida}">Mostrar Nombre</td>
 
 
-
-</body>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${ventas == null or ventas.empty}">
+            La lista de ventas está vacía
+        </div>
+    </main>
+    </body>
 </html>

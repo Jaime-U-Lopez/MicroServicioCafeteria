@@ -23,26 +23,6 @@ public class ProductoController {
         this.productoServiceImple = productoServiceImple;
     }
 
-    @GetMapping("/productos")
-    public String listarProductos(Model model) {
-        List<Producto> productos = this.productoServiceImple.getProductoAll();
-        model.addAttribute("productos", productos);
-        return "productos";
-    }
-
-    @GetMapping("/productos/nuevo")
-    public String mostrarFormularioNuevoProducto(Model model) {
-        model.addAttribute("producto", new Producto());
-        return "nuevo-producto";
-    }
-
-    @PostMapping("/productos/nuevo")
-    public String agregarProducto(@ModelAttribute("producto") ProductoDto productoDto) {
-        this.productoServiceImple.createProducto(productoDto) ;
-        return "redirect:/productos";
-    }
-
-//
 
     @PostMapping("productos")
     public Producto  createProduct(@RequestBody ProductoDto  productoDto){

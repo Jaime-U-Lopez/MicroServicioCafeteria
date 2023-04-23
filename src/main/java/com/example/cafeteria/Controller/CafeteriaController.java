@@ -27,28 +27,6 @@ public class CafeteriaController {
         this.cafeteriaServiceImple = cafeteriaServiceImple ;
     }
 
-    @GetMapping("/")
-    public String index(Model model) {
-        List<VentaProductos> ventas = this.cafeteriaServiceImple.consultarVentasAll();
-        model.addAttribute("ventas", ventas);
-        return "index";
-    }
-
-    @GetMapping("/ventas/nuevo")
-    public String formularioNuevoProducto(Model model) {
-
-        model.addAttribute("producto", new Producto());
-        return "formulario";
-    }
-
-    @PostMapping("/ventas/nuevo")
-    public String nuevoProducto(@ModelAttribute("producto") VentaDto ventaDto) {
-        this.cafeteriaServiceImple.registrarVenta(ventaDto);
-        return "redirect:/";
-    }
-
-
-
 
     @PostMapping("ventas")
     public ResponseEntity<?> createVenta(VentaDto ventaDto ){

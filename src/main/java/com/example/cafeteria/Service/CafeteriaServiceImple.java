@@ -9,10 +9,11 @@ import com.example.cafeteria.Repository.VentasProductosRepositoryImplem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 
 @Service
@@ -31,6 +32,7 @@ public class CafeteriaServiceImple implements CafeteriaService {
         this.inventarioServiceImple = inventarioServiceImple;
     }
     @Override
+    @Transactional
     public ResponseEntity<?> registrarVenta(VentaDto ventaDto) throws RuntimeException{
     Integer idProducto= ventaDto.getIdProducto();
     Integer cantidad=ventaDto.getCantidad();
@@ -66,27 +68,32 @@ public class CafeteriaServiceImple implements CafeteriaService {
     }
 
     @Override
+    @Transactional
     public void reversarVenta(Integer id) {
         this.ventasProductosRepositoryImplem.delete(id);
 
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<VentaProductos> consultarVentasAll() {
         return this.ventasProductosRepositoryImplem.getVentaProductoAll();
     }
 
     @Override
+    @Transactional
     public VentaProductos consultaByID(Integer id) {
         return this.ventasProductosRepositoryImplem.getVentaProduct(id);
     }
 
     @Override
+    @Transactional
     public VentaProductos actualizarVenta(VentaProductos ventaProductos) {
         return this.ventasProductosRepositoryImplem.Update(ventaProductos);
     }
 
     @Override
+    @Transactional
     public Producto consultaProductoConMasStock() {
         return this.ventasProductosRepositoryImplem.queryzProductoConMasStock();
     }

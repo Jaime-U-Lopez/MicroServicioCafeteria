@@ -6,10 +6,11 @@ import com.example.cafeteria.Entity.Producto;
 import com.example.cafeteria.Exception.ExceptionCafeteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
+@Transactional
 @Repository
 public class InventarioRepositoryImple implements InventarioRepositoryDao{
 

@@ -9,6 +9,7 @@ import com.example.cafeteria.Repository.ProductoRepository;
 import com.example.cafeteria.Repository.ProductoRepositoryImple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ public class ProductoServiceImple  implements ProductoService {
     }
 
     @Override
+    @Transactional
     public Producto createProducto(ProductoDto productoDto) throws RuntimeException {
 
         String nombreProducto=productoDto.getNombreProducto();
@@ -58,6 +60,7 @@ public class ProductoServiceImple  implements ProductoService {
     }
 
     @Override
+    @Transactional
     public Producto UpdateProducto(Producto producto) throws RuntimeException {
 
         String nombreProducto=producto.getNombreProducto();
@@ -73,6 +76,7 @@ public class ProductoServiceImple  implements ProductoService {
     }
 
     @Override
+    @Transactional
     public Boolean deleteProducto(Integer id) throws RuntimeException {
 
 
@@ -94,11 +98,13 @@ public class ProductoServiceImple  implements ProductoService {
 
 
     @Override
+    @Transactional(readOnly = true)
     public List<Producto> getProductoAll() {
         return this.productoRepositoryImple.getProductoAll();
     }
 
     @Override
+    @Transactional
     public Producto getProducto(Integer id) throws RuntimeException {
         return this.productoRepositoryImple.getProduct(id);
     }
