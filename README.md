@@ -61,7 +61,7 @@ El Servicio Cafetería es un microservicio diseñado para ayudar a los dueños d
 ### Link para uso:
 
 - github :  https://github.com/Jaime-U-Lopez/MicroServicioCafeteria
-- copia de la base de datos
+- copia de la base de datos : Se envia por Email.
 
 
 ### sentencias de MySql consultas personalizadas :
