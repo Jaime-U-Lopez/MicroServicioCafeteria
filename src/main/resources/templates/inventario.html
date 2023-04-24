@@ -18,6 +18,38 @@
 <main>
 
 
+    <div th:if="${inventarios != null and !inventarios.empty}">
+        <h1>  Listado  transacciones del  inventario  :  </h1>
+        <table border="1">
+            <tr>
+                <th>Id inventario </th>
+                <th>id producto</th>
+                <th>Nombre Producto</th>
+                <th>Referencia</th>
+                <th>Precio</th>
+                <th>Peso</th>
+                <th>Categoria</th>
+                <th>Stock Actual </th>
+                <th>Tipo</th>
+
+            </tr>
+            <tr th:each="inventario : ${inventarios}">
+                <td th:text="${inventario.id}">Mostrar Nombre</td>
+                <td th:text="${inventario.producto.id}">Mostrar Nombre</td>
+                <td th:text="${inventario.producto.NombreProducto}">Mostrar Nombre</td>
+                <td th:text="${inventario.producto.Referencia}">Mostrar Nombre</td>
+                <td th:text="${inventario.producto.Precio}">Mostrar Nombre</td>
+                <td th:text="${inventario.producto.Peso}">Mostrar Nombre</td>
+                <td th:text="${inventario.producto.Categoria}">Mostrar Nombre</td>
+                <td th:text="${inventario.producto.Stock}">Mostrar Nombre</td>
+                <td th:text="${inventario.tipo}">Mostrar Nombre</td>
+
+            </tr>
+        </table>
+    </div>
+    <div th:if="${inventarios == null or inventarios.empty}">
+        La lista de ventas está vacía
+    </div>
 
 </main>
 

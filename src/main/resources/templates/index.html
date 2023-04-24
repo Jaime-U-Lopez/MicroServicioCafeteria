@@ -20,7 +20,7 @@
 
         <h1> Formulario pára crear una venta </h1>
 
-    <form action="#" th:action="@{/guardarVenta}" th:object="${ventaDto}" method="post">
+    <form class="formulario" action="#" th:action="@{/guardarVenta}" th:object="${ventaDto}" method="post">
         <label for="producto">Producto:</label>
         <select id="producto" name="idProducto">
             <option th:each="producto : ${productos}"
@@ -35,9 +35,19 @@
     </form>
 
 
-        <h1>  Listado de ventas realizadas </h1>
+
+        <form class="formulario" action="#" th:action="@{/eliminarVenta}"  method="post">
+            <h1> Formulario pára eliminar  una venta </h1>
+            <br>
+            <label for="idventa">Id venta  a eliminar :</label>
+            <input type="number" id="idventa" name="idVenta" min="1" required>
+            <br>
+            <input class="btnDelete" type="submit" name="guardarVenta" value="Eliminar Venta">
+        </form>
+
 
         <div th:if="${ventas != null and !ventas.empty}">
+            <h1>  Listado de ventas realizadas </h1>
             <table border="1">
                 <tr>
                     <th>Id venta </th>
@@ -59,7 +69,6 @@
                     <td th:text="${venta.producto.Peso}">Mostrar Nombre</td>
                     <td th:text="${venta.producto.Categoria}">Mostrar Nombre</td>
                     <td th:text="${venta.cantidadVendida}">Mostrar Nombre</td>
-
 
                 </tr>
             </table>

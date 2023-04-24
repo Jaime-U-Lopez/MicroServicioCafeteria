@@ -1,6 +1,7 @@
 package com.example.cafeteria.ControllerMVC;
 
 
+import com.example.cafeteria.DTO.ProductoDto;
 import com.example.cafeteria.DTO.VentaDto;
 import com.example.cafeteria.Entity.Inventario;
 import com.example.cafeteria.Entity.Producto;
@@ -41,6 +42,15 @@ public class CafeteriaControllerMVC {
         List<Producto> productos = productoServiceImple.getProductoAll();
         model.addAttribute("ventas", ventas);
         model.addAttribute("productos", productos);
+        return "inicio";
+    }
+
+    @GetMapping("/venta")
+    public String venta(Model model){
+        List<VentaProductos> ventas = cafeteriaServiceImple.consultarVentasAll();
+        List<Producto> productos = productoServiceImple.getProductoAll();
+        model.addAttribute("ventas", ventas);
+        model.addAttribute("productos", productos);
         return "index";
     }
 
@@ -68,13 +78,41 @@ public class CafeteriaControllerMVC {
         }
         cafeteriaServiceImple.registrarVenta(ventaDto);
 
-        System.out.println("Producto ID: " + ventaDto.getIdProducto());
-        System.out.println("Cantidad vendida: " + ventaDto.getCantidad());
-
         return "redirect:/";
     }
 
-    @GetMapping("/agregar")
+    @PostMapping("/eliminarProducto")
+    public String eliminarProducto(@RequestParam("id") Integer id ) {
+
+        if (id == null) {
+            throw new ExceptionCafeteria("hay un error  campos null id : " + id);
+        }
+        try {
+            productoServiceImple.deleteProducto(id);
+        }catch (Exception e){
+
+            throw new ExceptionCafeteria("No se pudo eliminar, ya que es una llave foranea que se usa en otras tablas");
+        }
+
+        return "redirect:/";
+
+    }
+
+
+
+    @PostMapping("/eliminarVenta")
+    public String eliminarVenta(@RequestParam("idVenta") Integer idVenta ) {
+
+        if (idVenta == null) {
+            throw new ExceptionCafeteria("hay un error  campos null id : " + idVenta);
+        }
+        cafeteriaServiceImple.reversarVenta(idVenta);
+        System.out.println("Producto ID: " + idVenta);
+        return "redirect:/";
+
+    }
+
+        @GetMapping("/agregar")
     public String producto(VentaDto ventaDto){
         return "producto";
     }
@@ -85,8 +123,11 @@ public class CafeteriaControllerMVC {
         return "redirect:/";
     }
 
-
-
+    @PostMapping("/producto/agregar")
+    public String guardarProducto(ProductoDto productoDto){
+        productoServiceImple.createProducto(productoDto);
+        return "redirect:/";
+    }
 
 
 
