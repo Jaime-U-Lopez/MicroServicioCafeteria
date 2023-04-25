@@ -4,7 +4,6 @@
 El Servicio Cafetería es un microservicio diseñado para ayudar a los dueños de cafeterías a controlar sus ventas e inventario. Con este servicio, los usuarios pueden llevar un registro de los productos vendidos, la cantidad de stock disponible y más. Todo esto se hace utilizando tecnologías modernas como Java 8, Spring Boot y MySQL, y siguiendo principios de diseño sólidos para garantizar la escalabilidad y mantenibilidad del código."
 
 
-
 ## 💻:construction_worker: Tecnologias utlizadas 
 
 - Java 8: 
