@@ -3,6 +3,7 @@ package com.example.cafeteria.DTO;
 import com.example.cafeteria.Exception.ExceptionCafeteria;
 
 import javax.persistence.Column;
+import java.sql.Date;
 
 public class ProductoDto {
 
@@ -13,7 +14,6 @@ public class ProductoDto {
     private String referencia;
     private Integer peso;
     private Integer precio;
-
 
 
     public ProductoDto(Integer id, String nombreProducto, String categoria, String referencia, Integer peso, Integer precio) {

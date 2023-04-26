@@ -10,10 +10,9 @@ main {
 
 main a {
  text-decoration: none;
- cccc
+
  border:solid;
  border-radius:5px;
-
  padding: 15px;
  background: orange;
  color: #FFFFFF;
@@ -53,6 +52,8 @@ text-align:center;
 .formulario input {
   margin-bottom: 10px;
   margin-right: 2px;
+  height: 10px ;
+  padding: 10px
 
 }
 
@@ -72,7 +73,9 @@ form input[type="text"], , form select {
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
-  color: black
+  color: black;
+
+
 }
 
 
@@ -89,13 +92,15 @@ form input[type="submit"] {
    margin: 5px;
   background-color: #4CAF50;
   color: black;
-  padding: 12px 20px;
+  padding: auto;
   border: none;
   border-radius: 4px;
   cursor: pointer;
    width:150px;
      margin-bottom: 10px;
 }
+
+
 
 header{
 background-color:orange;
@@ -106,7 +111,7 @@ padding:10px;
 
 }
 .delete{
-background:red;
+background:red !import;
 }
 
 header a{
