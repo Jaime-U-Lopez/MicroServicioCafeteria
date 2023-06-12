@@ -51,7 +51,7 @@ El Servicio Cafetería es un microservicio diseñado para ayudar a los dueños d
 ###  Para hacer el uso le microservicio tienes varias  alternativas :
 
 1) Puedes interactuar con Swagger , dejo la ruta de mi Localhost, solo cambia el puerto por el tuyo : http://localhost:8080/swagger-ui/index.html#
-2) Interactua con el fron realizado con Thymeleaf
+2) Interactua con el front realizado con Thymeleaf
 
 3) Utiliza Postman o Insomnia para hacer solicitudes HTTP a la API del microservicio. Por ejemplo, para obtener una lista de todos los productos, haz una solicitud GET a la siguiente URL: 'http://localhost:8080/api/productos'."
 
