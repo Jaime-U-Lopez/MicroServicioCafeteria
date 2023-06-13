@@ -8,31 +8,31 @@ El Servicio Cafetería es un microservicio diseñado para ayudar a los dueños d
 
 - Java 8: 
 
-- Maven: una herramienta de gestión de dependencias que simplifica la construcción y administración de proyectos de Java.
+- Maven: Una herramienta de gestión de dependencias que simplifica la construcción y administración de proyectos de Java.
 
-- Swagger: una herramienta para diseñar, construir, documentar y consumir servicios web RESTful.
+- Swagger: Una herramienta para diseñar, construir, documentar y consumir servicios web RESTful.
 
-- MySQL: un sistema de gestión de bases de datos relacionales muy utilizado en la industria.
+- MySQL: Un sistema de gestión de bases de datos relacionales muy utilizado en la industria.
 
-- Data JPA/Hibernate: un framework que facilita el acceso a bases de datos relacionales desde aplicaciones Java.
+- Data JPA/Hibernate: Un framework que facilita el acceso a bases de datos relacionales desde aplicaciones Java.
 
-- Spring Boot: un framework de desarrollo de aplicaciones web que simplifica la configuración y la integración de varias tecnologías.
+- Spring Boot: Un framework de desarrollo de aplicaciones web que simplifica la configuración y la integración de varias tecnologías.
 
-- Principios SOLID: un conjunto de principios de diseño de software que buscan promover la modularidad, la flexibilidad y la mantenibilidad del código.
+- Principios SOLID: Un conjunto de principios de diseño de software que buscan promover la modularidad, la flexibilidad y la mantenibilidad del código.
 
-- Patrón DAO: un patrón de diseño que separa la lógica de acceso a datos de la lógica de negocio.
+- Patrón DAO: Un patrón de diseño que separa la lógica de acceso a datos de la lógica de negocio.
 
-- Patrón DTO: un patrón de diseño que permite transferir datos entre objetos de diferentes capas de la aplicación.
+- Patrón DTO: Un patrón de diseño que permite transferir datos entre objetos de diferentes capas de la aplicación.
 
 - Patrón de diseño Cadena de responsabilidad: un patrón de diseño que permite procesar solicitudes en una cadena de objetos."
 
-- Code Clean :  diseño por capas 
+- Code Clean: Diseño por capas 
 
-- Thymeleaf  : Para el dar una presentacion visual de los datos y sus interacciones
+- Thymeleaf: Para el dar una presentacion visual de los datos y sus interacciones
 
 
 
-### Para poner en marcha el Microservicio sigue estos pasos :
+### Para poner en marcha el Microservicio sigue estos pasos:
  
  1) Descarga el proyecto y correlo en tu ide de preferencia Inteligent, visual studio, Eclipse, etc
  2) Compilalo ( las dependencias de maven o Gradle)
@@ -48,7 +48,7 @@ El Servicio Cafetería es un microservicio diseñado para ayudar a los dueños d
  4) Arranca el servidor 
 
 
-###  Para hacer el uso le microservicio tienes varias  alternativas :
+###  Para hacer el uso le microservicio tienes varias  alternativas:
 
 1) Puedes interactuar con Swagger , dejo la ruta de mi Localhost, solo cambia el puerto por el tuyo : http://localhost:8080/swagger-ui/index.html#
 2) Interactua con el front realizado con Thymeleaf
@@ -59,11 +59,11 @@ El Servicio Cafetería es un microservicio diseñado para ayudar a los dueños d
 
 ### Link para uso:
 
-- github :  https://github.com/Jaime-U-Lopez/MicroServicioCafeteria
-- copia de la base de datos : Se envia por Email.
+- Github :  https://github.com/Jaime-U-Lopez/MicroServicioCafeteria
+- Copia de la base de datos : Se envia por Email.
 
 
-### sentencias de MySql consultas personalizadas :
+### sentencias de MySql consultas personalizadas:
 
 #### 1 ) Realizar una consulta que permita conocer cuál es el producto que más stock tiene: 
 
